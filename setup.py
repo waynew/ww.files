@@ -39,4 +39,4 @@ if os.name == 'posix':
     print("Looks like a unix!")
     for fname in DOTFILES:
         linkup(os.path.join(ROOT_DIR, 'dotfiles', fname),
-               os.path.expandusr('~/'+fname))
+               os.path.expanduser('~/'+fname))
