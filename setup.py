@@ -16,7 +16,27 @@ import subprocess
 #
 ## TODO: Actually exit here
 ##exit 0
-
 print("Setting up Wayne's World!")
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-print("Dotfiles dir: {}".format(ROOT_DIR))
+DOTFILES = ['.vimrc',
+            ]
+
+
+def revert():
+    for fname in DOTFILES:
+        os.unlink(os.path.expanduser('~/'+fname))
+
+
+def linkup(src, dst):
+    '''Create a symlink to src at dst. If dst already exists,
+    back it up first.'''
+    if os.path.isfile(dst):
+        os.rename(dst, dst+'.bak')
+    os.symlink(src, dst)
+
+
+if os.name == 'posix':
+    print("Looks like a unix!")
+    for fname in DOTFILES:
+        linkup(os.path.join(ROOT_DIR, 'dotfiles', fname),
+               os.path.expandusr('~/'+fname))
