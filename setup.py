@@ -1,4 +1,6 @@
 from __future__ import print_function
+
+import os
 import subprocess
 
 
@@ -16,3 +18,5 @@ import subprocess
 ##exit 0
 
 print("Setting up Wayne's World!")
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+print("Dotfiles dir: %s")
