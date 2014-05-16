@@ -19,4 +19,4 @@ import subprocess
 
 print("Setting up Wayne's World!")
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-print("Dotfiles dir: %s")
+print("Dotfiles dir: {}".format(ROOT_DIR))
