@@ -29,4 +29,4 @@ else
     echo "\nNope - no python :( Can't automagically setup."
 fi
 
-cleanup
+#cleanup
