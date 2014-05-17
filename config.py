@@ -17,7 +17,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 HASHY_PATH = os.path.join(ROOT_DIR, 'hashy.list')
 
 _apifile = os.path.join(ROOT_DIR, 'apikey')
-if os.path.isfile(:
+if os.path.isfile(_apifile):
     with open(_apifile) as f:
         APIKEY = f.read().strip()
 else:
