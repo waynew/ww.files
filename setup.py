@@ -2,6 +2,7 @@
 from __future__ import print_function
 
 import os
+import sys
 import json
 import subprocess
 import config
@@ -27,7 +28,8 @@ hashes = {}
 for fname in config.DOTFILES:
     src = os.path.join(config.ROOT_DIR, 'dotfiles', fname)
     dst = os.path.expanduser('~/'+fname)
-    backup(dst)
+    if '--no-backup' not in sys.argv:
+        backup(dst)
     shutil.copy(src, dst)
 
     sha = hashlib.sha1()
