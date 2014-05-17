@@ -2,9 +2,11 @@
 from __future__ import print_function
 
 import os
+import json
 import subprocess
 import config
 import shutil
+import hashlib
 
 
 print("Setting up Wayne's World!")
@@ -21,11 +23,23 @@ def backup(fname, count=0):
         shutil.copy(fname, dst)
 
 
+hashes = {}
 for fname in config.DOTFILES:
     src = os.path.join(config.ROOT_DIR, 'dotfiles', fname)
     dst = os.path.expanduser('~/'+fname)
     backup(dst)
     shutil.copy(src, dst)
+
+    sha = hashlib.sha1()
+    with open(dst) as f:
+        d = f.read()
+        sha.update('blob %u\0' % len(d))
+        sha.update(d)
+
+    hashes[fname] = sha.hexdigest()
+    
+with open(config.HASHY_PATH, 'w') as f:
+    json.dump(hashes, f)
 
 
 

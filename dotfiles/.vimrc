@@ -171,3 +171,5 @@ endif
 
 " Turn off autowrap for (t)ext and (c)omments
 set formatoptions-=tc
+
+" Faster stronger
