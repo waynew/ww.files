@@ -1,6 +1,7 @@
 import os
 import base64
 
+GIT_REPO = "https://api.github.com/repos/waynew/api-fire/contents/"
 GITHUB_USERNAME = "waynew"
 DOTFILES = ['.vimrc',
             ]

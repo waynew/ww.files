@@ -35,7 +35,7 @@ for fname in config.DOTFILES:
             f.seek(0)
             content = base64.b64encode(f.read())
 
-            req = urllib2.Request("https://api.github.com/repos/waynew/api-fire/contents/"+fname)
+            req = urllib2.Request(config.GIT_REPO+fname)
             reason = input("Reason for updating " + fname + ": ").strip()
             data = {'path': fname,
                     'message': reason or ("Updating " + fname),
