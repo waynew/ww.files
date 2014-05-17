@@ -1,7 +1,32 @@
+#!/usr/bin/env python
 from __future__ import print_function
 
 import os
 import subprocess
+import config
+import shutil
+
+
+print("Setting up Wayne's World!")
+
+def backup(fname, count=0):
+    if fname[-1].isdigit():
+        dst = fname.rsplit('.', 1)[0] + '.' + str(count)
+    else:
+        dst = fname+'.'+str(count)
+    if os.path.isfile(fname):
+        print("Backing up", fname, "to", dst)
+        count += 1
+        backup(dst, count)
+        shutil.copy(fname, dst)
+
+
+for fname in config.DOTFILES:
+    src = os.path.join(config.ROOT_DIR, 'dotfiles', fname)
+    dst = os.path.expanduser('~/'+fname)
+    backup(dst)
+    shutil.copy(src, dst)
+
 
 
 #ls -lah ~/programming/ww.files
@@ -16,27 +41,3 @@ import subprocess
 #
 ## TODO: Actually exit here
 ##exit 0
-print("Setting up Wayne's World!")
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-DOTFILES = ['.vimrc',
-            ]
-
-
-def revert():
-    for fname in DOTFILES:
-        os.unlink(os.path.expanduser('~/'+fname))
-
-
-def linkup(src, dst):
-    '''Create a symlink to src at dst. If dst already exists,
-    back it up first.'''
-    if os.path.isfile(dst):
-        os.rename(dst, dst+'.bak')
-    os.symlink(src, dst)
-
-
-if os.name == 'posix':
-    print("Looks like a unix!")
-    for fname in DOTFILES:
-        linkup(os.path.join(ROOT_DIR, 'dotfiles', fname),
-               os.path.expanduser('~/'+fname))
