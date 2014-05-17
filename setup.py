@@ -44,6 +44,7 @@ with open(config.HASHY_PATH, 'w') as f:
     json.dump(hashes, f)
 
 
+print("All done!")
 
 #ls -lah ~/programming/ww.files
 
