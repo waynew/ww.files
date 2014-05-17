@@ -20,6 +20,9 @@ rm -rf ~/programming/ww.files/ww.files-master
 chmod +x ~/programming/ww.files/setup.py
 chmod +x ~/programming/ww.files/publish.py
 
+echo "Ensuring ~/.bin exists"
+mkdir -p ~/.bin
+
 echo "\nChecking for Python"
 python --version > /dev/null 2>&1
 has_python=$?
