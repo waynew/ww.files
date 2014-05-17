@@ -11,6 +11,7 @@ GITHUB_USERNAME = "waynew"
 DOTFILES = ['.vimrc',
             '.zshrc',
             '.zshenv',
+            '.tmux.conf',
             ]
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
