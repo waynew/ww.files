@@ -17,6 +17,8 @@ tar -xf master.tar.gz -C ~/programming/ww.files >> ~/ww.files.log 2>&1
 rm master.tar.gz
 mv ~/programming/ww.files/ww.files-master/* ~/programming/ww.files/
 rm -rf ~/programming/ww.files/ww.files-master
+chmod +x ~/programming/ww.files/setup.py
+chmod +x ~/programming/ww.files/publish.py
 
 echo "\nChecking for Python"
 python --version > /dev/null 2>&1
@@ -24,7 +26,6 @@ has_python=$?
 
 if [ $has_python -eq 0 ]; then 
     echo "\nWe gots Python!"
-    python ~/programming/ww.files/setup.py
 else
     echo "\nNope - no python :( Can't automagically setup."
 fi
