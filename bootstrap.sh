@@ -29,8 +29,8 @@ mkdir -p ~/.bin
 
 echo "Installing vim pathogen"
 mkdir -p ~/.vim/autoload ~/.vim/bundle; \
-curl -LSso ~/.vim/autoload/pathogen.vim \
-    https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+wget https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+mv pathogen.vim ~/.vim/autoload
 
 echo "\nChecking for Python"
 python --version > /dev/null 2>&1
