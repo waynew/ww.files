@@ -52,18 +52,6 @@ for fname in config.DOTFILES:
                 result = urllib2.urlopen(req, json.dumps(data))
                 import pprint
                 data = json.load(result)
-                c = data.get('content')
-                if c:
-                    print(c.get('sha'))
-                    print(sha.hexdigest())
-                c = data.get("commit")
-                print(c.get('sha'))
-                print(c.get('tree')['sha'])
-                print(c['parents'][0]['sha'])
-                #for d in data:
-                #    print(d.get('type'))
-                #    print(d.get('name'))
-                #    print()
             except urllib2.HTTPError as e:
                 print("Unable to update", fname, "- FAIL")
                 print("Restoring hash")
