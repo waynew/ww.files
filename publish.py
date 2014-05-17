@@ -21,7 +21,7 @@ with open(config.HASHY_PATH) as f:
 for fname in config.DOTFILES:
     src = os.path.expanduser('~/'+fname)
     dst = os.path.join(config.ROOT_DIR, 'dotfiles', fname)
-    print("Copying", fname, "to dotfiles")
+    print("Copying", fname, "to dotfiles", dst)
     shutil.copy(src, dst)
 
     sha = hashlib.sha1()
@@ -35,9 +35,9 @@ for fname in config.DOTFILES:
             f.seek(0)
             content = base64.b64encode(f.read())
 
-            req = urllib2.Request(config.GIT_REPO+fname)
+            req = urllib2.Request(config.GIT_REPO+'dotfiles/'+fname)
             reason = input("Reason for updating " + fname + ": ").strip()
-            data = {'path': fname,
+            data = {'path': 'dotfiles/'+fname,
                     'message': reason or ("Updating " + fname),
                     'content': content,
                     }

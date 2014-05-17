@@ -1,9 +1,11 @@
 import os
 import base64
 
-GIT_REPO = "https://api.github.com/repos/waynew/api-fire/contents/"
+GIT_REPO = "https://api.github.com/repos/waynew/ww.files/contents/"
 GITHUB_USERNAME = "waynew"
 DOTFILES = ['.vimrc',
+            '.zshrc',
+            '.zshenv',
             ]
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
