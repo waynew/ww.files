@@ -1,13 +1,7 @@
 GITHUB_USER=waynew
 
 
-if [ -z $1 ] 
-then
-    command=help
-elif [ -n $1 ] 
-then
-    command=$1
-fi
+command=$1
 
 case $command in
     help)
@@ -31,5 +25,13 @@ case $command in
             grep -Po '"token":.*?[^\\]",' auth.json | sed 's/"token": "//' | sed 's/".*$//' > token.txt
             echo "Manage your authorizations at https://github.com/settings/applications - this is dotfiles-cli";
         fi
+        ;;
+    upload)
+        # TODO: write uploading stuff
+        echo "Upload stuff"
+        ;;
+    *)
+        # TODO: download .vimrc and other dotfiles
+        echo "It's bootstrappin' time!"
         ;;
 esac
