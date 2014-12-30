@@ -57,5 +57,25 @@ case $command in
         repo=${2:-ww.files}
         url=https://github.com/$user/$repo/archive/master.tar.gz
         echo "Downloading dotfiles for $user from $url"
+        has_wget=true
+        if ! type "wget" > /dev/null; then
+            echo "No wget found on path";
+            has_wget=false
+        fi
+
+        if ! type "curl" > /dev/null; then
+            if ! $has_wget; then 
+                echo "No curl either, I die!";
+                exit 1
+            fi
+        fi
+
+        if [ has_wget ]; then
+            wget -qO- $url | tar xz -C /tmp/
+        else
+            curl $url | tar xz -C /tmp/
+        fi
+
+        mv /tmp/$repo-master/dotfiles ~/test-dotfiles
         ;;
 esac
