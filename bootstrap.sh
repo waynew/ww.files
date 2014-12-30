@@ -70,12 +70,13 @@ case $command in
             fi
         fi
 
+        rm -rf /tmp/$repo-master/
         if [ has_wget ]; then
             wget -qO- $url | tar xz -C /tmp/
         else
             curl $url | tar xz -C /tmp/
         fi
 
-        mv /tmp/$repo-master/dotfiles ~/test-dotfiles
+        mv /tmp/$repo-master/ ~/test-dotfiles
         ;;
 esac
